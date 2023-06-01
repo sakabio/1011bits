@@ -1,0 +1,11 @@
+sudo tee  /usr/bin/zscaler-loopback.sh > /dev/null <<EOT
+ip link add name zscaler-ssh type dummy
+ip addr add 172.26.1.29/32 dev zscaler-ssh
+ip link set zscaler-ssh up
+EOT
+
+sudo chmod a+x /usr/bin/zscaler-loopback.sh
+
+sudo /usr/bin/zscaler-loopback.sh
+
+echo "@reboot /usr/bin/zscaler-loopback.sh"  | sudo tee -a /var/spool/cron/crontabs/root
