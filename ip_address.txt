@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 sudo tee  /usr/bin/zscaler-loopback.sh > /dev/null <<EOT
 ip link add name zscaler-ssh type dummy
